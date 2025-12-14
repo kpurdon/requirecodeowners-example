@@ -2,13 +2,16 @@
 
 Example usage of [kpurdon/requirecodeowners](https://github.com/kpurdon/requirecodeowners).
 
+This example intentionally fails to demonstrate the tool's behavior.
+
 ## Structure
 
 ```
 services/
-  foo/    # requires CODEOWNERS entry (level: 1)
-  bar/    # requires CODEOWNERS entry (level: 1)
-libs/     # requires CODEOWNERS entry (level: 0)
+  foo/        # ✅ has CODEOWNERS entry
+  bar/        # ✅ has CODEOWNERS entry
+  uncovered/  # ❌ missing CODEOWNERS entry
+libs/         # ✅ has CODEOWNERS entry
 ```
 
 ## Configuration
@@ -30,6 +33,11 @@ directories:
 /libs/ @kpurdon
 ```
 
-## Workflow
+Note: `services/uncovered/` has no CODEOWNERS entry, so validation fails.
 
-Runs on all PRs and pushes to main.
+## Expected Output
+
+```
+validation failed:
+  - no CODEOWNERS entry covers: services/uncovered
+```
