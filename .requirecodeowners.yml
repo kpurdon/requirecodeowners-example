@@ -1,3 +1,4 @@
 directories:
   - path: services
     level: 1
+  - path: libs

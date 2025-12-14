@@ -2,15 +2,12 @@ name: Validate CODEOWNERS
 
 on:
   pull_request:
-    paths:
-      - "CODEOWNERS"
-      - ".github/CODEOWNERS"
-      - ".requirecodeowners.yml"
-      - "services/**"
+  push:
+    branches: [main]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: kpurdon/requirecodeowners@v1
+      - uses: kpurdon/requirecodeowners@v0
