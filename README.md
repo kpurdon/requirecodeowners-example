@@ -44,13 +44,13 @@ directories:
 Console:
 ```
   ✗ empty
-    no subdirectories at level 1. Create subdirectories or set level: 0
+    No subdirectories found at level 1. Add subdirectories or set level to 0 in .requirecodeowners.yml.
   ✗ nonexistent
-    directory does not exist. Create it or remove from .requirecodeowners.yml
+    Directory not found. Create it or remove from .requirecodeowners.yml.
   ✗ services/also-uncovered
-    missing CODEOWNERS entry. Add to CODEOWNERS: /services/also-uncovered/ @owner
+    Not covered by CODEOWNERS. Add: /services/also-uncovered/ @your-team
   ✗ services/uncovered
-    missing CODEOWNERS entry. Add to CODEOWNERS: /services/uncovered/ @owner
+    Not covered by CODEOWNERS. Add: /services/uncovered/ @your-team
 
 ✗ 4 directories failed CODEOWNERS check
 ```
