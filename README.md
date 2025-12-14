@@ -2,16 +2,19 @@
 
 Example usage of [kpurdon/requirecodeowners](https://github.com/kpurdon/requirecodeowners).
 
-This example intentionally fails to demonstrate the tool's behavior.
+This example intentionally fails to demonstrate all failure modes.
 
 ## Structure
 
 ```
 services/
-  foo/        # ✅ has CODEOWNERS entry
-  bar/        # ✅ has CODEOWNERS entry
-  uncovered/  # ❌ missing CODEOWNERS entry
-libs/         # ✅ has CODEOWNERS entry
+  foo/           # ✅ has CODEOWNERS entry
+  bar/           # ✅ has CODEOWNERS entry
+  uncovered/     # ❌ missing CODEOWNERS entry
+  also-uncovered/# ❌ missing CODEOWNERS entry
+libs/            # ✅ has CODEOWNERS entry
+empty/           # ❌ has no subdirectories (level: 1)
+nonexistent/     # ❌ directory does not exist
 ```
 
 ## Configuration
@@ -21,8 +24,11 @@ libs/         # ✅ has CODEOWNERS entry
 ```yaml
 directories:
   - path: services
-    level: 1          # check each subdirectory
-  - path: libs        # level 0 (default) checks the directory itself
+    level: 1
+  - path: libs
+  - path: nonexistent    # does not exist
+  - path: empty
+    level: 1             # no subdirectories
 ```
 
 ## CODEOWNERS
@@ -33,11 +39,12 @@ directories:
 /libs/ @kpurdon
 ```
 
-Note: `services/uncovered/` has no CODEOWNERS entry, so validation fails.
-
 ## Expected Output
 
 ```
 validation failed:
+  - no CODEOWNERS entry covers: services/also-uncovered
   - no CODEOWNERS entry covers: services/uncovered
+  - directory does not exist: nonexistent
+  - no subdirectories found at level 1 in: empty
 ```

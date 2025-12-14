@@ -2,3 +2,6 @@ directories:
   - path: services
     level: 1
   - path: libs
+  - path: nonexistent
+  - path: empty
+    level: 1
