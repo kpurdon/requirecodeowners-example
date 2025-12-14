@@ -1,4 +1,4 @@
-name: Validate CODEOWNERS
+name: Require CODEOWNERS
 
 on:
   pull_request:
