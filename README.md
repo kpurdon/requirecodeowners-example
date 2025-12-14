@@ -41,10 +41,18 @@ directories:
 
 ## Expected Output
 
+Console:
 ```
-validation failed:
-  - no CODEOWNERS entry covers: services/also-uncovered
-  - no CODEOWNERS entry covers: services/uncovered
-  - directory does not exist: nonexistent
-  - no subdirectories found at level 1 in: empty
+  ✗ empty
+    no subdirectories at level 1. Create subdirectories or set level: 0
+  ✗ nonexistent
+    directory does not exist. Create it or remove from .requirecodeowners.yml
+  ✗ services/also-uncovered
+    missing CODEOWNERS entry. Add to CODEOWNERS: /services/also-uncovered/ @owner
+  ✗ services/uncovered
+    missing CODEOWNERS entry. Add to CODEOWNERS: /services/uncovered/ @owner
+
+✗ 4 directories failed CODEOWNERS check
 ```
+
+GitHub Actions also shows a summary table with all errors.
